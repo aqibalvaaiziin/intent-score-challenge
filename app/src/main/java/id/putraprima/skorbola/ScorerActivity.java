@@ -15,6 +15,8 @@ public class ScorerActivity extends AppCompatActivity implements Serializable{
 
     EditText playerName;
     int key;
+    int scoreHome;
+    int scoreAway;
     String nameField;
 
     @Override
@@ -27,6 +29,8 @@ public class ScorerActivity extends AppCompatActivity implements Serializable{
 
         if (extras != null) {
             key = extras.getInt("key");
+            scoreHome = extras.getInt("dataHome");
+            scoreAway = extras.getInt("dataAway");
         }
     }
 
@@ -37,17 +41,20 @@ public class ScorerActivity extends AppCompatActivity implements Serializable{
         }
         else{
             if (key == 1){
+                scoreHome += 1;
                 nameField = playerName.getText().toString();
                 Intent intent = new Intent();
                 intent.putExtra("homeGoalers", nameField);
+                intent.putExtra("scoreHome",scoreHome);
                 System.out.println(nameField);
                 setResult(1, intent);
                 finish();
             }else if (key == 2){
+                scoreAway += 1;
                 nameField = playerName.getText().toString();
                 Intent intent = new Intent();
-                System.out.println(nameField);
                 intent.putExtra("awayGoalers", nameField);
+                intent.putExtra("scoreAway",scoreAway);
                 setResult(2,intent);
                 finish();
             }

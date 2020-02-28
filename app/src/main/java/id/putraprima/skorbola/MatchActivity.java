@@ -30,8 +30,8 @@ public class MatchActivity extends AppCompatActivity implements Serializable {
     Bitmap bitmap2;
     String homeTeam,message,result;
     String awayTeam;
-    int scoreHome = 0;
-    int scoreAway = 0;
+    int scoreHome;
+    int scoreAway;
     String scorerName = "";
     String homeGoals = "";
     String awayGoals = "";
@@ -82,35 +82,36 @@ public class MatchActivity extends AppCompatActivity implements Serializable {
             awayName.setText(awayTeam);
             homeLogo.setImageBitmap(bitmap1);
             awayLogo.setImageBitmap(bitmap2);
-
         }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        System.out.println("okewwwwwww");
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 0){
             return;
         }
         if (requestCode == 1){
             homeGoals = data.getStringExtra("homeGoalers") + ", " + homeGoals ;
+            scoreHome = data.getIntExtra("scoreHome",0);
+            homeScore.setText(String.valueOf(scoreHome));
+
         }else if (requestCode == 2){
             awayGoals = data.getStringExtra("awayGoalers") + ", " + awayGoals;
+            scoreAway = data.getIntExtra("scoreAway",0);
+            awayScore.setText(String.valueOf(scoreAway));
         }
     }
 
     public void scoreHomeHandler(View view){
         Intent intent = new Intent(this,ScorerActivity.class);
         intent.putExtra("key",1);
+        intent.putExtra("dataHome",scoreHome);
         startActivityForResult(intent,1);
-        scoreHome += 1;
-        homeScore.setText(String.valueOf(scoreHome));
     }
     public void scoreAwayHandler(View view){
-        scoreAway += 1;
-        awayScore.setText(String.valueOf(scoreAway));
         Intent intent = new Intent(this,ScorerActivity.class);
         intent.putExtra("key",2);
+        intent.putExtra("dataAway",scoreAway);
         startActivityForResult(intent,2);
     }
 
@@ -128,7 +129,6 @@ public class MatchActivity extends AppCompatActivity implements Serializable {
             message = "DRAW";
             scorerName = "";
         }
-        System.out.println("wawa "+homeGoals);
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("result",result);
         intent.putExtra("messages", message);
