@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Result"
+        android:textAlignment="center"
         android:textSize="40sp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,10 +21,11 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:text="Result"
+        android:textAlignment="center"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -32,7 +34,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name Of Winning Team"
         android:textAlignment="center"
