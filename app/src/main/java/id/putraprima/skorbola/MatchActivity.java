@@ -32,7 +32,8 @@ public class MatchActivity extends AppCompatActivity implements Serializable {
     String awayTeam;
     int scoreHome;
     int scoreAway;
-    String scorerName = "";
+    String scorerNameHome = "";
+    String scorerNameAway = "";
     String homeGoals = "";
     String awayGoals = "";
 
@@ -119,20 +120,22 @@ public class MatchActivity extends AppCompatActivity implements Serializable {
         if (scoreHome > scoreAway){
             result = String.valueOf(scoreHome)  + " - " + String.valueOf(scoreAway);
             message = homeTeam + " WIN";
-            scorerName = homeGoals;
+            scorerNameHome = "Home : " +homeGoals;
         }else if(scoreHome < scoreAway){
             result = String.valueOf(scoreHome)  + " - " + String.valueOf(scoreAway);
             message = awayTeam + " WIN";
-            scorerName = awayGoals;
+            scorerNameAway = "Away " + awayGoals;
         }else if(scoreHome == scoreAway){
             result = String.valueOf(scoreHome)  + " - " + String.valueOf(scoreAway);
             message = "DRAW";
-            scorerName = "";
+            scorerNameHome = "Home : "+homeGoals;
+            scorerNameAway = "Away : "+awayGoals;
         }
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra("result",result);
         intent.putExtra("messages", message);
-        intent.putExtra("scorer",scorerName);
+        intent.putExtra("scorerHome",scorerNameHome);
+        intent.putExtra("scorerAway",scorerNameAway);
         startActivity(intent);
     }
 }
